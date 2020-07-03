@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components/macro";
 
 const DepositContainer = styled.section``;
@@ -17,11 +17,36 @@ const DepositHeader = styled.h2`
 
 const DepositBox = styled.section``;
 
-const WithdrawButton = styled.section``;
+const InputList = styled.section``;
+
+const Input = styled.input`
+  display: block;
+`;
+
+const WithdrawButton = styled.button``;
 
 const WithdrawEstimate = styled.section``;
 
-export default function Deposit() {
+export default function Deposit(params: any) {
+  const [notes, setNotes] = useState<Array<string>>([""]);
+
+  const executeWithdraw = function () {};
+
+  const handleChange = function (event: any, index: number) {
+    const value = event.target.value;
+
+    setNotes((notes) => {
+      const notesCopy = [...notes];
+      notesCopy[index] = value;
+
+      return notesCopy;
+    });
+  };
+
+  const addNote = function () {
+    setNotes((notes) => notes.concat(""));
+  };
+
   return (
     <DepositContainer>
       <Header>Sunshine.cash</Header>
@@ -29,8 +54,23 @@ export default function Deposit() {
         Withdraw your Tornado.cash transactions to a secure private address.
       </Welcome>
       <DepositHeader>Note(s) to withdraw</DepositHeader>
-      <DepositBox></DepositBox>
-      <WithdrawButton></WithdrawButton>
+      <DepositBox>
+        <InputList>
+          {notes.map((note, idx) => (
+            <Input
+              type="text"
+              key={`input_${idx}`}
+              name="deposit"
+              onChange={(event) => handleChange(event, idx)}
+              value={note}
+            />
+          ))}
+        </InputList>
+        <button onClick={addNote}>Add Note</button>
+      </DepositBox>
+      <WithdrawButton onClick={() => executeWithdraw()}>
+        Withdraw
+      </WithdrawButton>
       <WithdrawEstimate></WithdrawEstimate>
     </DepositContainer>
   );
