@@ -27,7 +27,7 @@ const WithdrawButton = styled.button``;
 
 const WithdrawEstimate = styled.section``;
 
-export default function Deposit(params: any) {
+export default function Deposit(props: any) {
   const [notes, setNotes] = useState<Array<string>>([""]);
 
   const executeWithdraw = function () {};
