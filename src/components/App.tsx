@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
+/** @format */
 
 import BurnerCore from "@burner-wallet/core";
-import LocalSigner from "@burner-wallet/core/signers/LocalSigner";
-import InjectedSigner from "@burner-wallet/core/signers/InjectedSigner";
 import InfuraGateway from "@burner-wallet/core/gateways/InfuraGateway";
-import { dai, eth } from "@burner-wallet/assets";
-
+import InjectedSigner from "@burner-wallet/core/signers/InjectedSigner";
+import LocalSigner from "@burner-wallet/core/signers/LocalSigner";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/macro";
-import LoadingBalance from "./LoadingBalance";
+import { dai, eth } from "../utils/assets";
 import Deposit from "./Deposit";
+import LoadingBalance from "./LoadingBalance";
 import Transfer from "./Transfer";
 
 const StyledApp = styled.div`
@@ -17,12 +16,15 @@ const StyledApp = styled.div`
 `;
 
 function App() {
-  const [balance, setBalance] = useState<undefined | number>(undefined);
-  const [core, setCore] = useState<any>(undefined);
+  const [balance, setBalance] = useState<number | undefined>(undefined);
+  const [core, setCore] = useState<BurnerCore | undefined>(undefined);
 
   useEffect(() => {
     const core = new BurnerCore({
       signers: [new LocalSigner(), new InjectedSigner()],
+
+      // A single Infura key can handle up to 100k requests per day before being rate-limited.
+      // If we get more traffic than that, we would need to switch to an Ethereum node.
       gateways: [new InfuraGateway(process.env.REACT_APP_INFURA_KEY)],
       assets: [dai, eth],
     });
