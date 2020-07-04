@@ -6,7 +6,7 @@ import InjectedSigner from "@burner-wallet/core/signers/InjectedSigner";
 import LocalSigner from "@burner-wallet/core/signers/LocalSigner";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components/macro";
-import { dai, eth } from "../utils/assets";
+import { dai, eth } from "@burner-wallet/assets";
 import Deposit from "./Deposit";
 import LoadingBalance from "./LoadingBalance";
 import Transfer from "./Transfer";

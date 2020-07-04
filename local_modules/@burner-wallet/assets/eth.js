@@ -6,4 +6,5 @@ module.exports = new NativeAsset({
   network: '1',
   priceSymbol: 'ETH',
   icon: 'https://static.burnerfactory.com/icons/eth.svg',
+  pollInterval: 60 * 60 * 1000, // 60 minutes
 });

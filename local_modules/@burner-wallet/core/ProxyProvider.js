@@ -4,12 +4,14 @@ const NonceSubProvider = require("web3-provider-engine/subproviders/nonce-tracke
 const HookedSubprovider = require("web3-provider-engine/subproviders/hooked-wallet.js");
 const ProviderSubprovider = require("web3-provider-engine/subproviders/provider.js");
 
+const pollIntervalMs = 60 * 60 * 1000; // 60 minutes
+
 class ProxyProvider {
   constructor(network, core) {
     this.network = network;
     this.core = core;
 
-    this.engine = new ProviderEngine();
+    this.engine = new ProviderEngine({ pollingInterval: pollIntervalMs });
 
     this.engine.addProvider({
       async handleRequest(payload, next, end) {

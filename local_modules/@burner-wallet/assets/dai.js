@@ -7,4 +7,5 @@ module.exports = new ERC20Asset({
   address: '0x6b175474e89094c44da98b954eedeac495271d0f',
   usdPrice: 1,
   icon: 'https://static.burnerfactory.com/icons/mcd.svg',
+  pollInterval: 60 * 60 * 1000, // 60 minutes
 });

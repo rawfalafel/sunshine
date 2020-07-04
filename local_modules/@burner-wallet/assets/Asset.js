@@ -2,7 +2,7 @@ const { fromWei, toWei, toBN } = require('web3-utils');
 const pricefeed = require('./pricefeed');
 const { toDecimal } = require('./utils/decimals');
 
-const PRICE_POLL_INTERVAL = 15 * 1000;
+const pollIntervalMs = 60 * 60 * 1000; // 60 minutes
 
 class Asset {
   constructor({ id, name, network, usdPrice, priceSymbol, icon=null, type=null, decimals=18 }) {
@@ -113,7 +113,7 @@ class Asset {
   async _startPricePolling() {
     const interval = setInterval(async () => {
       this.usdPrice = await pricefeed.getPrice(this.priceSymbol);
-    }, PRICE_POLL_INTERVAL);
+    }, pollIntervalMs);
     this.cleanupFunctions.push(() => clearInterval(interval));
 
     this.usdPrice = await pricefeed.getPrice(this.priceSymbol);
