@@ -1,23 +1,29 @@
 /** @format */
 
+import { dai, eth } from "@burner-wallet/assets";
 import BurnerCore from "@burner-wallet/core";
 import InfuraGateway from "@burner-wallet/core/gateways/InfuraGateway";
 import InjectedSigner from "@burner-wallet/core/signers/InjectedSigner";
 import LocalSigner from "@burner-wallet/core/signers/LocalSigner";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components/macro";
-import { dai, eth } from "@burner-wallet/assets";
-import Deposit from "./Deposit";
-import LoadingBalance from "./LoadingBalance";
-import Transfer from "./Transfer";
+import Card from "./Card";
+import Wallet from "./Wallet";
 
 const StyledApp = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 100px 0;
 `;
 
+type View = "home" | "send" | "withdraw";
+
 function App() {
-  const [balance, setBalance] = useState<number | undefined>(undefined);
+  const [balance, setBalance] = useState<string | undefined>(undefined);
   const [core, setCore] = useState<BurnerCore | undefined>(undefined);
+  const [address, setAddress] = useState<string | undefined>(undefined);
+  const [view, setView] = useState<View>("home");
 
   useEffect(() => {
     const core = new BurnerCore({
@@ -31,24 +37,45 @@ function App() {
 
     setCore(core);
 
-    const accounts = core.getAccounts();
+    const address = core.getAccounts()[0];
+    setAddress(address);
+
     const web3 = core.getWeb3("1");
 
-    web3.eth.getBalance(accounts[0]).then((_balance) => {
-      setBalance(parseInt(_balance));
+    web3.eth.getBalance(address).then((_balance) => {
+      setBalance(_balance);
     });
   }, []);
 
-  let Body;
-  if (balance === undefined) {
-    Body = <LoadingBalance />;
-  } else if (balance === 0) {
-    Body = <Deposit core={core} />;
-  } else {
-    Body = <Transfer />;
+  // let Body;
+  // if (balance === undefined) {
+  //   Body = <LoadingBalance />;
+  // } else if (balance === 0) {
+  //   Body = <Deposit core={core} />;
+  // } else {
+  //   Body = <Transfer />;
+  // }
+
+  if (!balance || !address) {
+    return (
+      <StyledApp>
+        <Card>Loading...</Card>
+      </StyledApp>
+    );
   }
 
-  return <StyledApp>{Body}</StyledApp>;
+  return (
+    <StyledApp>
+      {view === "home" && (
+        <Wallet
+          balance={balance}
+          address={address}
+          onSend={() => setView("send")}
+          onWithdraw={() => setView("withdraw")}
+        />
+      )}
+    </StyledApp>
+  );
 }
 
 export default App;
