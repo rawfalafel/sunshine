@@ -7,10 +7,15 @@ import InjectedSigner from "@burner-wallet/core/signers/InjectedSigner";
 import LocalSigner from "@burner-wallet/core/signers/LocalSigner";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components/macro";
-import provingKey from "../assets/withdrawProvingKey";
 import Contents from "./Contents";
 import Ellipsis from "./Ellipsis";
 import Nav from "./Nav";
+
+declare global {
+  interface Window {
+    genZKSnarkProof: any;
+  }
+}
 
 const StyledApp = styled.div`
   display: flex;
@@ -21,11 +26,6 @@ const StyledApp = styled.div`
 `;
 
 function App() {
-  useEffect(() => {
-    // TODO(yutaro): replace this
-    console.log(provingKey);
-  }, []);
-
   const withdrawalEx = {
     note: "asdfasdf",
     totalEthAmount: 0.3,
@@ -72,14 +72,18 @@ function App() {
     });
   }, []);
 
-  // let Body;
-  // if (balance === undefined) {
-  //   Body = <LoadingBalance />;
-  // } else if (balance === 0) {
-  //   Body = <Deposit core={core} />;
-  // } else {
-  //   Body = <Transfer />;
-  // }
+  useEffect(() => {
+    const script = document.createElement('script');
+
+    script.src = "websnark.js";
+    script.async = true;
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    }
+  }, []);
 
   let contents =
     balance && address && core ? (

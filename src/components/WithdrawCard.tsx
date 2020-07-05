@@ -10,6 +10,10 @@ import Button from "./Button";
 import Card from "./Card";
 import H2 from "./H2";
 import UnstyledButton from "./UnstyledButton";
+import createWithdraw from "../utils/createWithdraw";
+import BurnerCore from "@burner-wallet/core";
+
+const { parseNote, withdraw } = createWithdraw;
 
 const StyledHeader = styled.div`
   display: flex;
@@ -39,12 +43,20 @@ const StyledLabelText = styled.p`
   align-items: center;
 `;
 
-export default function WithdrawCard({ onBack }: { onBack: () => void }) {
-  const [notes, setNotes] = useState("");
-  function initiateWithdraw() {}
+export default function WithdrawCard({ core, onBack }: { core: BurnerCore, onBack: () => void }) {
+  const [note, setNote] = useState("");
+
+  function initiateWithdraw() {
+    const web3 = core.getWeb3("1");
+    const address = core.getAccounts()[0];
+    const noteObj = parseNote(note);
+    const relayer = "http://tornado-mainnet.poa.network";
+
+    withdraw(web3, noteObj.deposit, noteObj.currency, noteObj.amount, address, relayer, "0");
+  }
 
   function handleChange(e: { target: { value: string } }) {
-    setNotes(e.target.value);
+    setNote(e.target.value);
   }
 
   return (
@@ -62,10 +74,10 @@ export default function WithdrawCard({ onBack }: { onBack: () => void }) {
             Notes (comma-separated) &nbsp;
             <FiInfo data-tip="You'll receive a note for each deposit made in Tornado.cash." />
           </StyledLabelText>
-          <StyledTextarea onChange={handleChange} value={notes} />
+          <StyledTextarea onChange={handleChange} value={note} />
         </StyledLabel>
       </div>
-      <Button onClick={initiateWithdraw} width="100%" disabled={notes === ""}>
+      <Button onClick={initiateWithdraw} width="100%" disabled={note === ""}>
         Confirm
       </Button>
     </Card>

@@ -54,7 +54,7 @@ export default function Contents({
             />
           )}
           {view === "withdraw" && (
-            <WithdrawCard onBack={() => setView("home")} />
+            <WithdrawCard core={core} onBack={() => setView("home")} />
           )}
           {view === "send" && <SendCard onBack={() => setView("home")} />}
         </section>
