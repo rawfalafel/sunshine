@@ -9,7 +9,9 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components/macro";
 import provingKey from "../assets/withdrawProvingKey";
 import Card from "./Card";
+import SendCard from "./SendCard";
 import Wallet from "./Wallet";
+import WithdrawCard from "./WithdrawCard";
 
 const StyledApp = styled.div`
   display: flex;
@@ -80,6 +82,8 @@ function App() {
           onWithdraw={() => setView("withdraw")}
         />
       )}
+      {view === "withdraw" && <WithdrawCard onBack={() => setView("home")} />}
+      {view === "send" && <SendCard onBack={() => setView("home")} />}
     </StyledApp>
   );
 }
