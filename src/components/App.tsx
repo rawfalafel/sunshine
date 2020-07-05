@@ -1,12 +1,13 @@
 /** @format */
 
+import { dai, eth } from "@burner-wallet/assets";
 import BurnerCore from "@burner-wallet/core";
 import InfuraGateway from "@burner-wallet/core/gateways/InfuraGateway";
 import InjectedSigner from "@burner-wallet/core/signers/InjectedSigner";
 import LocalSigner from "@burner-wallet/core/signers/LocalSigner";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components/macro";
-import { dai, eth } from "@burner-wallet/assets";
+import provingKey from "../assets/withdrawProvingKey";
 import Deposit from "./Deposit";
 import LoadingBalance from "./LoadingBalance";
 import Transfer from "./Transfer";
@@ -16,6 +17,11 @@ const StyledApp = styled.div`
 `;
 
 function App() {
+  useEffect(() => {
+    // TODO(yutaro): replace this
+    console.log(provingKey);
+  }, []);
+
   const [balance, setBalance] = useState<number | undefined>(undefined);
   const [core, setCore] = useState<BurnerCore | undefined>(undefined);
 
