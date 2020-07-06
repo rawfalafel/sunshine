@@ -28,7 +28,7 @@ export default function Wally({
   let marginTop = 0;
   if (view === "withdraw") {
     src = WithdrawImage;
-    marginLeft = -350;
+    marginLeft = -390;
     marginTop = 0;
   } else if (view === "send") {
     src = SendImage;
