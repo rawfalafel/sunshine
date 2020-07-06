@@ -2,12 +2,18 @@
 
 import BurnerCore from "@burner-wallet/core";
 import React, { useState } from "react";
+import styled from "styled-components/macro";
 import Banners from "./Banners";
 import SendCard from "./SendCard";
 import Wallet from "./Wallet";
+import Wally from "./Wally";
 import WithdrawCard from "./WithdrawCard";
 
 type View = "home" | "send" | "withdraw";
+
+const StyledContainer = styled.div`
+  position: relative;
+`;
 
 export default function Contents({
   balance,
@@ -36,18 +42,23 @@ export default function Contents({
         setWithdrawal={setWithdrawal}
         setSend={setSend}
       />
-      <section>
-        {view === "home" && (
-          <Wallet
-            balance={balance}
-            address={address}
-            onSend={() => setView("send")}
-            onWithdraw={() => setView("withdraw")}
-          />
-        )}
-        {view === "withdraw" && <WithdrawCard onBack={() => setView("home")} />}
-        {view === "send" && <SendCard onBack={() => setView("home")} />}
-      </section>
+      <StyledContainer>
+        <Wally view={view} />
+        <section>
+          {view === "home" && (
+            <Wallet
+              balance={balance}
+              address={address}
+              onSend={() => setView("send")}
+              onWithdraw={() => setView("withdraw")}
+            />
+          )}
+          {view === "withdraw" && (
+            <WithdrawCard onBack={() => setView("home")} />
+          )}
+          {view === "send" && <SendCard onBack={() => setView("home")} />}
+        </section>
+      </StyledContainer>
     </React.Fragment>
   );
 }

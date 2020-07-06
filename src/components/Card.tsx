@@ -11,6 +11,9 @@ const StyledCard = styled.section`
   min-height: 250px;
   box-sizing: border-box;
   background-color: white;
+  position: relative;
+  z-index: 100;
+  margin-right: -280px;
 `;
 
 export default function Card({ children }: { children: React.ReactNode }) {

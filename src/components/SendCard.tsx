@@ -90,7 +90,11 @@ export default function SendCard({ onBack }: { onBack: () => void }) {
           />
         </StyledLabel>
       </div>
-      <Button onClick={initiateWithdraw} width="100%">
+      <Button
+        onClick={initiateWithdraw}
+        width="100%"
+        disabled={amount === "" || address === ""}
+      >
         Confirm
       </Button>
     </Card>

@@ -65,7 +65,7 @@ export default function WithdrawCard({ onBack }: { onBack: () => void }) {
           <StyledTextarea onChange={handleChange} value={notes} />
         </StyledLabel>
       </div>
-      <Button onClick={initiateWithdraw} width="100%">
+      <Button onClick={initiateWithdraw} width="100%" disabled={notes === ""}>
         Confirm
       </Button>
     </Card>
