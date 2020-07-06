@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState } from "react";
 import styled from "styled-components/macro";
 
@@ -49,7 +51,7 @@ export default function Deposit(props: any) {
 
   return (
     <DepositContainer>
-      <Header>Sunshine.cash</Header>
+      <Header>Wallaroo</Header>
       <Welcome>
         Withdraw your Tornado.cash transactions to a secure private address.
       </Welcome>

@@ -1,28 +1,23 @@
 /** @format */
 
-import React, { useState } from "react";
-import CopyToClipboard from "react-copy-to-clipboard";
-import { FiCopy } from "react-icons/fi";
+import React from "react";
 import styled from "styled-components/macro";
 import colors from "../utils/colors";
-import { ethToUsd, truncateAddress } from "../utils/index";
+import { ethToUsd } from "../utils/index";
+import Address from "./Address";
 import Button from "./Button";
 import Card from "./Card";
+import H2 from "./H2";
 
 const StyledHeader = styled.section`
   display: flex;
+  align-items: center;
   justify-content: space-between;
 `;
 
-const StyledAddress = styled.button`
-  border: 1px solid ${colors.lightGray};
-  padding: 12px 16px;
-  border-radius: 16px;
-`;
-
-const StyledPre = styled.pre`
-  padding: 0;
-  margin: 0;
+const StyledUSD = styled.span`
+  font-size: 0.6em;
+  padding-bottom: 16px;
 `;
 
 const StyledContents = styled.section`
@@ -35,9 +30,16 @@ const StyledButtons = styled.div`
   justify-content: space-between;
 `;
 
-const StyledTotal = styled.h3``;
+const StyledTotal = styled.h3`
+  font-size: 2em;
+  border-bottom: 1px solid ${colors.lightGray};
+  padding: 16px 0;
+  margin: 0;
+`;
 
-const StyledToken = styled.p``;
+const StyledToken = styled.p`
+  padding: 20px 0;
+`;
 
 export default function Wallet({
   balance,
@@ -50,35 +52,21 @@ export default function Wallet({
   onWithdraw: () => void;
   onSend: () => void;
 }) {
-  const [copied, setCopied] = useState(false);
-
   return (
     <Card>
       <StyledHeader>
-        <h2>Private Wallet</h2>
-        <CopyToClipboard
-          text={address}
-          onCopy={() => {
-            setCopied(true);
-            setTimeout(() => {
-              setCopied(false);
-            }, 2000);
-          }}
-        >
-          <StyledAddress>
-            <StyledPre>
-              {copied ? "Address copied!" : truncateAddress(address)} <FiCopy />
-            </StyledPre>
-          </StyledAddress>
-        </CopyToClipboard>
+        <H2>Burner Wallet</H2>
+        <Address address={address} />
       </StyledHeader>
       <StyledContents>
-        <StyledTotal>${ethToUsd(balance)} USD</StyledTotal>
+        <StyledTotal>
+          ${ethToUsd(balance)} <StyledUSD>USD</StyledUSD>
+        </StyledTotal>
         <StyledToken>{balance} ETH</StyledToken>
       </StyledContents>
       <StyledButtons>
         <Button onClick={onWithdraw}>Withdraw</Button>
-        <Button onClick={onSend} disabled={parseInt(balance) === 0}>
+        <Button onClick={onSend} disabled={/* isBalanceZero(balance) */ false}>
           Send
         </Button>
       </StyledButtons>

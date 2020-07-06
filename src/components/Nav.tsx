@@ -2,13 +2,15 @@
 
 import React from "react";
 import styled from "styled-components/macro";
+import colors from "../utils/colors";
 
 const StyledNav = styled.nav`
-  max-width: 1000px;
+  max-width: 840px;
   width: 100%;
   display: flex;
   text-align: left;
   padding: 20px;
+  color: ${colors.darkGreen};
 `;
 
 const StyledH1 = styled.h1`

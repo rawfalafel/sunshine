@@ -1,18 +1,22 @@
 /** @format */
 
 import React from "react";
+import { FiCheckCircle } from "react-icons/fi";
+import { GiHand } from "react-icons/gi";
 import styled from "styled-components/macro";
 import colors from "../utils/colors";
 import { isBalanceZero } from "../utils/index";
+import Ellipsis from "./Ellipsis";
 
 const StyledBanner = styled.section`
   display: flex;
   border: 1px solid ${colors.lightGray};
-  padding: 12px 20px;
+  padding: 20px 20px;
   border-radius: 16px;
   margin-bottom: 24px;
   width: 100%;
-  max-width: 1000px;
+  max-width: 800px;
+  background: white;
 `;
 
 const StyledInfo = styled.div`
@@ -20,27 +24,47 @@ const StyledInfo = styled.div`
 `;
 
 const StyledP1 = styled.p`
-  font-weight: bold;
+  font-weight: medium;
   font-size: 1.2em;
+  margin: 0 0 8px 0;
 `;
 
-const StyledP2 = styled.p``;
+const StyledP2 = styled.p`
+  font-weight: light;
+  margin: 0;
+`;
 
 const StyledDismissButton = styled.button`
   margin-left: 16px;
+  border: 0;
+  background: none;
+  color: ${colors.green};
+  cursor: pointer;
+  font-weight: medium;
+
+  &:hover {
+    color: ${colors.darkGreen};
+  }
+`;
+
+const StyledIcon = styled.div`
+  margin-right: 20px;
 `;
 
 export function Banner({
   line1,
   line2,
+  icon,
   onDismiss,
 }: {
   line1: string;
   line2: string;
+  icon?: React.ReactNode;
   onDismiss?: () => void;
 }) {
   return (
     <StyledBanner>
+      {icon && <StyledIcon>{icon}</StyledIcon>}
       <StyledInfo>
         <StyledP1>{line1}</StyledP1>
         <StyledP2>{line2}</StyledP2>
@@ -69,6 +93,7 @@ export default function Banners({
     if (!send.isComplete) {
       return (
         <Banner
+          icon={<Ellipsis />}
           line1={`We're sending ${send.ethAmount} ETH to ${send.recipientAddress}!`}
           line2={`Your money should arrive around ${send.eta}.`}
         />
@@ -77,8 +102,9 @@ export default function Banners({
 
     return (
       <Banner
+        icon={<FiCheckCircle size={50} color={colors.green} />}
         line1={`Your money was successfully sent!`}
-        line2={`You can now ask the recipient to verify.`}
+        line2={`It should now be available at the recipient address.`}
         onDismiss={() => setSend(undefined)}
       />
     );
@@ -88,6 +114,7 @@ export default function Banners({
     if (!withdrawal.isComplete) {
       return (
         <Banner
+          icon={<Ellipsis />}
           line1={`We're withdrawing ${withdrawal.totalEthAmount} ETH to your burner wallet.`}
           line2={`Your cash should be available around ${withdrawal.eta}.`}
         />
@@ -95,6 +122,7 @@ export default function Banners({
     }
     return (
       <Banner
+        icon={<GiHand size={50} />}
         line1={`We've withdrawn ${withdrawal.totalEthAmount} ETH to your burner wallet!`}
         line2={`You can use it to anonymously send funds, register an ENS domain, donate on Gitcoin, and more.`}
         onDismiss={() => setWithdrawal(undefined)}

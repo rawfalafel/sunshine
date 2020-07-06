@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components/macro";
 import provingKey from "../assets/withdrawProvingKey";
 import Contents from "./Contents";
+import Ellipsis from "./Ellipsis";
 import Nav from "./Nav";
 
 const StyledApp = styled.div`
@@ -36,7 +37,7 @@ function App() {
     ethAmount: 0.1,
     recipientAddress: "0x235829357239529385",
     eta: "18:44",
-    isComplete: true,
+    isComplete: false,
   };
 
   const [balance, setBalance] = useState<string | undefined>(undefined);
@@ -92,7 +93,7 @@ function App() {
         setSend={setSend}
       />
     ) : (
-      <p>Loading...</p>
+      <Ellipsis size={100} />
     );
 
   return (
