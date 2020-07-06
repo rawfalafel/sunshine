@@ -8,19 +8,16 @@ import LocalSigner from "@burner-wallet/core/signers/LocalSigner";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components/macro";
 import provingKey from "../assets/withdrawProvingKey";
-import Card from "./Card";
-import SendCard from "./SendCard";
-import Wallet from "./Wallet";
-import WithdrawCard from "./WithdrawCard";
+import Contents from "./Contents";
+import Nav from "./Nav";
 
 const StyledApp = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 100px 0;
+  padding: 0 40px;
 `;
-
-type View = "home" | "send" | "withdraw";
 
 function App() {
   useEffect(() => {
@@ -28,12 +25,31 @@ function App() {
     console.log(provingKey);
   }, []);
 
+  const withdrawalEx = {
+    note: "asdfasdf",
+    totalEthAmount: 0.3,
+    eta: "15:45",
+    isComplete: false,
+  };
+
+  const sendEx = {
+    ethAmount: 0.1,
+    recipientAddress: "0x235829357239529385",
+    eta: "18:44",
+    isComplete: true,
+  };
+
   const [balance, setBalance] = useState<string | undefined>(undefined);
   const [core, setCore] = useState<BurnerCore | undefined>(undefined);
   const [address, setAddress] = useState<string | undefined>(undefined);
-  const [view, setView] = useState<View>("home");
+  const [withdrawal, setWithdrawal] = useState<Withdrawal | undefined>(
+    withdrawalEx
+  );
+  const [send, setSend] = useState<Send | undefined>(sendEx);
 
+  // Fetch the balance, address, in-progress withdrawal, and in-progress send
   useEffect(() => {
+    // TODO(Fetch from cookie)
     const core = new BurnerCore({
       signers: [new LocalSigner(), new InjectedSigner()],
 
@@ -64,26 +80,25 @@ function App() {
   //   Body = <Transfer />;
   // }
 
-  if (!balance || !address) {
-    return (
-      <StyledApp>
-        <Card>Loading...</Card>
-      </StyledApp>
+  let contents =
+    balance && address && core ? (
+      <Contents
+        balance={balance}
+        address={address}
+        core={core}
+        withdrawal={withdrawal}
+        send={send}
+        setWithdrawal={setWithdrawal}
+        setSend={setSend}
+      />
+    ) : (
+      <p>Loading...</p>
     );
-  }
 
   return (
     <StyledApp>
-      {view === "home" && (
-        <Wallet
-          balance={balance}
-          address={address}
-          onSend={() => setView("send")}
-          onWithdraw={() => setView("withdraw")}
-        />
-      )}
-      {view === "withdraw" && <WithdrawCard onBack={() => setView("home")} />}
-      {view === "send" && <SendCard onBack={() => setView("home")} />}
+      <Nav />
+      {contents}
     </StyledApp>
   );
 }

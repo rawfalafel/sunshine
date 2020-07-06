@@ -7,7 +7,8 @@ const StyledCard = styled.section`
   border: 1px solid #eee;
   border-radius: 16px;
   padding: 20px;
-  width: 800px;
+  max-width: 600px;
+  width: 100%;
 `;
 
 export default function Card({ children }: { children: React.ReactNode }) {

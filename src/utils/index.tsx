@@ -8,3 +8,7 @@ export function ethToUsd(balance: string) {
   // TODO(@yutaro): Fix this so the USD value is actually loaded
   return 0; // eth.getUSDValue(balance);
 }
+
+export function isBalanceZero(balance: string) {
+  return parseInt(balance) === 0;
+}
