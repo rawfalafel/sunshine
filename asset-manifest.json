@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.4ee52416.chunk.css",
-    "main.js": "/static/js/main.1af0e915.chunk.js",
-    "main.js.map": "/static/js/main.1af0e915.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.d4fcfcbf.js",
-    "runtime-main.js.map": "/static/js/runtime-main.d4fcfcbf.js.map",
-    "static/js/2.0793b2cb.chunk.js": "/static/js/2.0793b2cb.chunk.js",
-    "static/js/2.0793b2cb.chunk.js.map": "/static/js/2.0793b2cb.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.1ccc2f457a4c5a8777eddf01bd6a71ae.js": "/precache-manifest.1ccc2f457a4c5a8777eddf01bd6a71ae.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.4ee52416.chunk.css.map": "/static/css/main.4ee52416.chunk.css.map",
-    "static/js/2.0793b2cb.chunk.js.LICENSE.txt": "/static/js/2.0793b2cb.chunk.js.LICENSE.txt",
-    "static/media/home.png": "/static/media/home.daa6752a.png",
-    "static/media/send.png": "/static/media/send.03b6c6a1.png",
-    "static/media/withdraw.png": "/static/media/withdraw.f163fdda.png"
+    "main.css": "/sunshine/static/css/main.4ee52416.chunk.css",
+    "main.js": "/sunshine/static/js/main.8a52849f.chunk.js",
+    "main.js.map": "/sunshine/static/js/main.8a52849f.chunk.js.map",
+    "runtime-main.js": "/sunshine/static/js/runtime-main.d8ef61ab.js",
+    "runtime-main.js.map": "/sunshine/static/js/runtime-main.d8ef61ab.js.map",
+    "static/js/2.77c3a840.chunk.js": "/sunshine/static/js/2.77c3a840.chunk.js",
+    "static/js/2.77c3a840.chunk.js.map": "/sunshine/static/js/2.77c3a840.chunk.js.map",
+    "index.html": "/sunshine/index.html",
+    "precache-manifest.295723354f6012cc10b110e095d2426e.js": "/sunshine/precache-manifest.295723354f6012cc10b110e095d2426e.js",
+    "service-worker.js": "/sunshine/service-worker.js",
+    "static/css/main.4ee52416.chunk.css.map": "/sunshine/static/css/main.4ee52416.chunk.css.map",
+    "static/js/2.77c3a840.chunk.js.LICENSE.txt": "/sunshine/static/js/2.77c3a840.chunk.js.LICENSE.txt",
+    "static/media/home.png": "/sunshine/static/media/home.daa6752a.png",
+    "static/media/send.png": "/sunshine/static/media/send.03b6c6a1.png",
+    "static/media/withdraw.png": "/sunshine/static/media/withdraw.f163fdda.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.d4fcfcbf.js",
-    "static/js/2.0793b2cb.chunk.js",
+    "static/js/runtime-main.d8ef61ab.js",
+    "static/js/2.77c3a840.chunk.js",
     "static/css/main.4ee52416.chunk.css",
-    "static/js/main.1af0e915.chunk.js"
+    "static/js/main.8a52849f.chunk.js"
   ]
 }
