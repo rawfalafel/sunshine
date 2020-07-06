@@ -1,10 +1,11 @@
 /** @format */
 
 import React, { useState } from "react";
-import { FiChevronLeft, FiInfo } from "react-icons/fi";
+import { FiInfo } from "react-icons/fi";
 import ReactTooltip from "react-tooltip";
 import styled from "styled-components/macro";
 import colors from "../utils/colors";
+import AnimatedBack from "./AnimatedBack";
 import Button from "./Button";
 import Card from "./Card";
 import H2 from "./H2";
@@ -51,7 +52,7 @@ export default function WithdrawCard({ onBack }: { onBack: () => void }) {
       <ReactTooltip place="right" />
       <StyledHeader>
         <UnstyledButton onClick={onBack}>
-          <FiChevronLeft size={20} />
+          <AnimatedBack />
         </UnstyledButton>
         <H2>Withdraw from Tornado.cash</H2>
       </StyledHeader>

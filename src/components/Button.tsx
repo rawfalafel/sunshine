@@ -14,7 +14,6 @@ const StyledButton = styled.button`
   border: 0;
   font-family: "Ubuntu";
   font-weight: bold;
-  transition: transform 0.25s ease;
 
   &:disabled {
     background: ${colors.mediumGray};
@@ -22,7 +21,6 @@ const StyledButton = styled.button`
 
   &:hover {
     background-color: ${colors.darkGreen};
-    transform: translate3d(0, -3px, 0);
   }
 `;
 

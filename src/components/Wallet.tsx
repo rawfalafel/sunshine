@@ -13,6 +13,8 @@ const StyledHeader = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid ${colors.lightGray};
 `;
 
 const StyledUSD = styled.span`
@@ -32,8 +34,7 @@ const StyledButtons = styled.div`
 
 const StyledTotal = styled.h3`
   font-size: 2em;
-  border-bottom: 1px solid ${colors.lightGray};
-  padding: 16px 0;
+  padding: 16px 0 0 0;
   margin: 0;
 `;
 

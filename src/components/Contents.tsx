@@ -26,7 +26,7 @@ export default function Contents({
   setWithdrawal: (w: Withdrawal | undefined) => void;
   setSend: (s: Send | undefined) => void;
 }) {
-  const [view, setView] = useState<View>("send");
+  const [view, setView] = useState<View>("home");
   return (
     <React.Fragment>
       <Banners

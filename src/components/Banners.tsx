@@ -24,7 +24,7 @@ const StyledInfo = styled.div`
 `;
 
 const StyledP1 = styled.p`
-  font-weight: medium;
+  font-weight: 500;
   font-size: 1.2em;
   margin: 0 0 8px 0;
 `;

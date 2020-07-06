@@ -1,9 +1,9 @@
 /** @format */
 
 import React, { useState } from "react";
-import { FiChevronLeft } from "react-icons/fi";
 import styled from "styled-components/macro";
 import colors from "../utils/colors";
+import AnimatedBack from "./AnimatedBack";
 import Button from "./Button";
 import Card from "./Card";
 import H2 from "./H2";
@@ -65,7 +65,7 @@ export default function SendCard({ onBack }: { onBack: () => void }) {
     <Card>
       <StyledHeader>
         <UnstyledButton onClick={onBack}>
-          <FiChevronLeft size={20} />
+          <AnimatedBack />
         </UnstyledButton>
         <H2>Send from private wallet</H2>
       </StyledHeader>
