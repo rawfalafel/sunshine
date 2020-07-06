@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.4ee52416.chunk.css",
+    "main.js": "/static/js/main.1af0e915.chunk.js",
+    "main.js.map": "/static/js/main.1af0e915.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.d4fcfcbf.js",
+    "runtime-main.js.map": "/static/js/runtime-main.d4fcfcbf.js.map",
+    "static/js/2.0793b2cb.chunk.js": "/static/js/2.0793b2cb.chunk.js",
+    "static/js/2.0793b2cb.chunk.js.map": "/static/js/2.0793b2cb.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.1ccc2f457a4c5a8777eddf01bd6a71ae.js": "/precache-manifest.1ccc2f457a4c5a8777eddf01bd6a71ae.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.4ee52416.chunk.css.map": "/static/css/main.4ee52416.chunk.css.map",
+    "static/js/2.0793b2cb.chunk.js.LICENSE.txt": "/static/js/2.0793b2cb.chunk.js.LICENSE.txt",
+    "static/media/home.png": "/static/media/home.daa6752a.png",
+    "static/media/send.png": "/static/media/send.03b6c6a1.png",
+    "static/media/withdraw.png": "/static/media/withdraw.f163fdda.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d4fcfcbf.js",
+    "static/js/2.0793b2cb.chunk.js",
+    "static/css/main.4ee52416.chunk.css",
+    "static/js/main.1af0e915.chunk.js"
+  ]
+}
