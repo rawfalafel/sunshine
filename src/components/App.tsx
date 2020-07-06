@@ -26,27 +26,25 @@ const StyledApp = styled.div`
 `;
 
 function App() {
-  const withdrawalEx = {
-    note: "asdfasdf",
-    totalEthAmount: 0.3,
-    eta: "15:45",
-    isComplete: false,
-  };
+  // const withdrawalEx = {
+  //   note: "asdfasdf",
+  //   totalEthAmount: 0.3,
+  //   eta: "15:45",
+  //   isComplete: false,
+  // };
 
-  const sendEx = {
-    ethAmount: 0.1,
-    recipientAddress: "0x235829357239529385",
-    eta: "18:44",
-    isComplete: false,
-  };
+  // const sendEx = {
+  //   ethAmount: 0.1,
+  //   recipientAddress: "0x235829357239529385",
+  //   eta: "18:44",
+  //   isComplete: false,
+  // };
 
   const [balance, setBalance] = useState<string | undefined>(undefined);
   const [core, setCore] = useState<BurnerCore | undefined>(undefined);
   const [address, setAddress] = useState<string | undefined>(undefined);
-  const [withdrawal, setWithdrawal] = useState<Withdrawal | undefined>(
-    withdrawalEx
-  );
-  const [send, setSend] = useState<Send | undefined>(sendEx);
+  const [withdrawal, setWithdrawal] = useState<Withdrawal | undefined>(undefined);
+  const [send, setSend] = useState<Send | undefined>(undefined);
 
   // Fetch the balance, address, in-progress withdrawal, and in-progress send
   useEffect(() => {

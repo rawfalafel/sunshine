@@ -10,10 +10,10 @@ import Button from "./Button";
 import Card from "./Card";
 import H2 from "./H2";
 import UnstyledButton from "./UnstyledButton";
-import createWithdraw from "../utils/createWithdraw";
+// import createWithdraw from "../utils/createWithdraw";
 import BurnerCore from "@burner-wallet/core";
 
-const { parseNote, withdraw } = createWithdraw;
+// const { parseNote, withdraw } = createWithdraw;
 
 const StyledHeader = styled.div`
   display: flex;
@@ -49,10 +49,10 @@ export default function WithdrawCard({ core, onBack }: { core: BurnerCore, onBac
   function initiateWithdraw() {
     const web3 = core.getWeb3("1");
     const address = core.getAccounts()[0];
-    const noteObj = parseNote(note);
+    // const noteObj = parseNote(note);
     const relayer = "http://tornado-mainnet.poa.network";
 
-    withdraw(web3, noteObj.deposit, noteObj.currency, noteObj.amount, address, relayer, "0");
+    // withdraw(web3, noteObj.deposit, noteObj.currency, noteObj.amount, address, relayer, "0");
   }
 
   function handleChange(e: { target: { value: string } }) {
